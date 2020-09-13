@@ -24,6 +24,7 @@ VMWare→编辑→虚拟网络编辑器→VMNet8→子网IP改为192.168.88.0 NA
 虚拟机为CentOS7
 
 安装Docker：https://docs.docker.com/engine/install/
+
 安装git：yum -y install git
 
 
