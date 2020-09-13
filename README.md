@@ -25,18 +25,20 @@ VMWare→编辑→虚拟网络编辑器→VMNet8→子网IP改为192.168.88.0 NA
 
 安装Docker：https://docs.docker.com/engine/install/
 
+            官方一键脚本：curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+
 安装git：yum -y install git
-
-
 
 
 将此仓库克隆到本地（假设使用root用户）：
 
 git clone https://github.com/xuerui911/docker-bigdata.git
 
+cd docker-bigdata
+
 用我的Dockerfile构建镜像
 
-docker run -f Dockerfile-Centos7Bigdata -t xuerui911/bigdata .
+docker build -f Dockerfile-Centos7Bigdata -t xuerui911/bigdata .
 
 （-f代表file，即指定dockerfile为哪个文件，如果dockerfile名字就为Dockerfile，-f Dockerfi可省略）
 
