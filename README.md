@@ -42,7 +42,7 @@ cd docker-bigdata
 
 用我的Dockerfile构建镜像
 
-docker build -f Dockerfile-CentOS7Bigdata -t bigdata .
+docker build -f Dockerfile-CentOS7Bigdata -t centos-bigdata .
 
 （-f代表file，即指定dockerfile为哪个文件，如果dockerfile名字就为Dockerfile，-f Dockerfile可省略）
 
@@ -98,13 +98,13 @@ systemctl restart network
 通过构建的image创建容器
 
 
-run代表创建并运行 -i表示jiaohu -t表示终端 -d表示后头 --net表示用哪个docker网络，想用pipework此处必须用none，--name为自定义容器名，xuerui911/centos-bigdata为从哪个image创建，/bin/sh为容器创建之后运行哪个程序
+run代表创建并运行 -i表示jiaohu -t表示终端 -d表示后头 --net表示用哪个docker网络，想用pipework此处必须用none，--name为自定义容器名，centos-bigdata为从哪个image创建，/bin/sh为容器创建之后运行哪个程序
 
-docker run -itd --net=none --name hadoop102 xuerui911/centos-bigdata /bin/sh
+docker run -itd --net=none --name hadoop102 centos-bigdata /bin/sh
 
-docker run -itd --net=none --name hadoop103 xuerui911/centos-bigdata /bin/sh
+docker run -itd --net=none --name hadoop103 centos-bigdata /bin/sh
 
-docker run -itd --net=none --name hadoop104 xuerui911/centos-bigdata /bin/sh
+docker run -itd --net=none --name hadoop104 centos-bigdata /bin/sh
 
 
 pipework指定IP
