@@ -46,7 +46,7 @@ RUN chmod -R 755 ${SH_HOME}/*
 RUN chmod -R 755 ${MAVEN_HOME}/*
 
 #修改hosts添加集群机器
-RUN -e echo "192.168.88.101 hadoop101\n192.168.88.102 hadoop102\n192.168.88.103 hadoop103\n192.168.88.104 hadoop104\n192.168.88.105 hadoop105" >> /etc/hosts
+RUN echo -e "192.168.88.101 hadoop101\n192.168.88.102 hadoop102\n192.168.88.103 hadoop103\n192.168.88.104 hadoop104\n192.168.88.105 hadoop105" >> /etc/hosts
 
 
 
