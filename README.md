@@ -98,13 +98,13 @@ systemctl restart network
 通过构建的image创建容器
 
 
-run代表创建并运行 -i表示jiaohu -t表示终端 -d表示后头 --net表示用哪个docker网络，想用pipework此处必须用none，--name为自定义容器名，centos-bigdata为从哪个image创建，/bin/sh为容器创建之后运行哪个程序
+run代表创建并运行 -i表示jiaohu -t表示终端 -d表示后头 --net表示用哪个docker网络，想用pipework此处必须用none，--name为自定义容器名，--privileged=true为容器开启最高权限（慎用），centos-bigdata为从哪个image创建，/usr/sbin/init为容器创建之后运行哪个程序，默认是/bin/bash，想在容器里能使用systemctl就得用/usr/sbin/init
 
-docker run -itd --net=none --name hadoop102 centos-bigdata /bin/sh
+docker run -itd --net=none --name hadoop102 --privileged=true centos-bigdata /usr/sbin/init
 
-docker run -itd --net=none --name hadoop103 centos-bigdata /bin/sh
+docker run -itd --net=none --name hadoop103 --privileged=true centos-bigdata /usr/sbin/init
 
-docker run -itd --net=none --name hadoop104 centos-bigdata /bin/sh
+docker run -itd --net=none --name hadoop104 --privileged=true centos-bigdata /usr/sbin/init
 
 
 pipework指定IP
