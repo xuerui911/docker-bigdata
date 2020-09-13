@@ -18,21 +18,13 @@ RUN yum -y update && yum -y install iproute wget bash-completion vim dnf nano op
 #安装scala（spark依赖）
 RUN yum	-y install https://downloads.lightbend.com/scala/2.13.3/scala-2.13.3.rpm
 
-COPY downloadandextract.sh /root/
 
 RUN mkdir -p /opt/module
 
-ADD jdk-11.0.8.tar.gz /opt/module/
-ADD maven-3.6.3.tar.gz /opt/module/
-ADD hadoop-3.3.0.tar.gz /opt/module/
-ADD zookeeper-3.6.2.tar.gz /opt/module/
-ADD hive-3.1.2.tar.gz /opt/module/
-ADD flume-1.9.0.tar.gz /opt/module/
-ADD kafka_2.13-2.6.0.tgz /opt/module/
-ADD hbase-2.3.1.tar.gz /opt/module/
-ADD phoenix-5.0.0.tar.gz /opt/module/
+COPY downloadandextract.sh /root/
 
 RUN sh /root/downloadandextract.sh && rm -f /root/downloadandextract.sh
+
 #大数据组件环境变量
 ENV JAVA_HOME=/opt/module/jdk-11.0.8
 ENV MAVEN_HOME=/opt/module/maven-3.6.3
