@@ -2,7 +2,7 @@
 
 成功做到Windows可ping通Linux中容器，容器内可ping通Windows
 
-
+大数据各组件版本参见Readme-DockerCentOS7Bigdata.txt
 
 自学Docker基础知识：B站搜“docker基础”一堆教程（B站打钱）
 
