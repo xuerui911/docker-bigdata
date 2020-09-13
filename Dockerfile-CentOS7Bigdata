@@ -15,8 +15,11 @@ COPY repos/* /etc/yum.repos.d/
 #安装系统常用软件
 RUN yum -y update && yum -y install iproute wget bash-completion vim dnf nano openssh-server openssh-client python3
 
-#添加大数据组件
+#安装scala（spark依赖）
 RUN yum	-y install https://downloads.lightbend.com/scala/2.13.3/scala-2.13.3.rpm
+
+COPY download.sh /root/
+
 RUN mkdir -p /opt/module
 ADD jdk-11.0.8.tar.gz /opt/module/
 ADD maven-3.6.3.tar.gz /opt/module/
@@ -50,6 +53,7 @@ RUN chmod -R 755 ${MAVEN_HOME}/*
 #修改hosts添加集群机器
 RUN -e echo "192.168.88.101 hadoop101\n192.168.88.102 hadoop102\n192.168.88.103 hadoop103\n192.168.88.104 hadoop104\n192.168.88.105 hadoop105" >> /etc/hosts
 
-#修改集群组件配置hdfs-site yarn-site
 
+
+#成功安装时打印
 ONBUILD echo "构建成功！"
