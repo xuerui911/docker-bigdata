@@ -50,7 +50,7 @@ docker images
 
 
 
-Docker默认网络所谓的桥接实际为NAT，想要讲Docker网络改为像VMWare一样子机器运行在宿主机同一网段，需要借助pipework（pipework作者好像也是docker团队的大佬，https://github.com/jpetazzo/pipework）
+Docker默认网络所谓的桥接实际为NAT，想要将Docker网络改为像VMWare一样子机器运行在宿主机同一网段，需要借助pipework（pipework作者好像也是docker团队的大佬，https://github.com/jpetazzo/pipework）
 
 参考教程：
 
