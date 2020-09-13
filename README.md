@@ -26,6 +26,8 @@ VMWare→编辑→虚拟网络编辑器→VMNet8→子网IP改为192.168.88.0 NA
 安装Docker：https://docs.docker.com/engine/install/
 
             官方一键脚本：curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+	  
+国内docker网速过慢：自行搜索docker国内镜像加速
 
 启动docker服务：systemctl enable docker && systemctl start docker
 
