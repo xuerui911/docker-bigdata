@@ -31,7 +31,7 @@ VMWare→编辑→虚拟网络编辑器→VMNet8→子网IP改为192.168.88.0 NA
 
 将此仓库克隆到本地（假设使用root用户）：
 
-git clone https://https://github.com/xuerui911/docker-bigdata.git
+git clone https://github.com/xuerui911/docker-bigdata.git
 
 用我的Dockerfile构建镜像
 
