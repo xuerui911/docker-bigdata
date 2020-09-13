@@ -78,7 +78,7 @@ vim ifcfg-ens33
 
 #注释掉UUID IPADDR GATEWAY DNS
 
-增加一行BRIDGE=bbr0
+增加一行BRIDGE=br0
 
 保存退出
 
