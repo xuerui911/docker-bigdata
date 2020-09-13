@@ -16,7 +16,7 @@ COPY repos/* /etc/yum.repos.d/
 RUN yum -y update && yum -y install iproute wget bash-completion vim dnf nano openssh-server openssh-client python3
 
 #安装scala（spark依赖）
-RUN yum	-y install https://downloads.lightbend.com/scala/2.13.3/scala-2.13.3.rpm
+RUN wget https://downloads.lightbend.com/scala/2.13.3/scala-2.13.3.rpm && yum	-y install scala-2.13.3.rpm && rm -f scala-2.13.3.rpm
 
 
 RUN mkdir -p /opt/module
