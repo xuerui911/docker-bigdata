@@ -1,0 +1,55 @@
+FROM centos:7
+MAINTAINER XUE RUI<xuerui911@126.com>
+WORKDIR /root/
+
+#readme文件
+#COPY DockerCentOS7Bigdata-Readme /root/readme.txt
+
+#设置时区为东八区
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+#添加源
+COPY repos/* /etc/yum.repos.d/
+
+#安装系统常用软件
+RUN yum -y update && yum -y install iproute wget bash-completion vim dnf nano openssh-server openssh-client python3
+
+#添加大数据组件
+RUN yum	-y install https://downloads.lightbend.com/scala/2.13.3/scala-2.13.3.rpm
+RUN mkdir -p /opt/module
+ADD jdk-11.0.8.tar.gz /opt/module/
+ADD maven-3.6.3.tar.gz /opt/module/
+ADD hadoop-3.3.0.tar.gz /opt/module/
+ADD zookeeper-3.6.2.tar.gz /opt/module/
+ADD hive-3.1.2.tar.gz /opt/module/
+ADD flume-1.9.0.tar.gz /opt/module/
+ADD kafka_2.13-2.6.0.tgz /opt/module/
+ADD hbase-2.3.1.tar.gz /opt/module/
+ADD phoenix-5.0.0.tar.gz /opt/module/
+#大数据组件环境变量
+ENV JAVA_HOME=/opt/module/jdk-11.0.8
+ENV MAVEN_HOME=/opt/module/maven-3.6.3
+ENV HADOOP_HOME=/opt/module/hadoop-3.3.0
+ENV ZK_HOME=/opt/module/zookeeper-3.6.2
+ENV HIVE_HOME=/opt/module/hive-3.1.2
+ENV FLUME_HOME=/opt/module/flume-1.9.0
+ENV KAFKA_HOME=/opt/module/kafka_2.13-2.6.0
+ENV HBASE_HOME=/opt/module/hbase-2.3.1
+ENV PHN_HOME=/opt/module/phoenix-5.0.0
+ENV PATH =$PATH:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${ZK_HOME}/bin:${HIVE_HOME}/bin:${FLUME_HOME}/bin:${KAFKA_HOME}/bin:${HBASE_HOME}/bin:${PHN_HOME}/bin
+RUN chmod -R 755 ${MAVEN_HOME}/*
+
+#添加自定义脚本
+RUN mkdir -p /opt/module/scripts
+ENV SH_HOME=/opt/module/scripts
+COPY scripts/* ${SH_HOME}/
+RUN chmod -R 755 ${SH_HOME}/*
+RUN chmod -R 755 ${MAVEN_HOME}/*
+
+#修改hosts添加集群机器
+RUN -e echo "192.168.88.101 hadoop101\n192.168.88.102 hadoop102\n192.168.88.103 hadoop103\n192.168.88.104 hadoop104\n192.168.88.105 hadoop105" >> /etc/hosts
+
+#修改集群组件配置hdfs-site yarn-site
+
+ONBUILD echo "构建成功！"
