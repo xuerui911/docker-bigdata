@@ -27,6 +27,8 @@ VMWare→编辑→虚拟网络编辑器→VMNet8→子网IP改为192.168.88.0 NA
 
             官方一键脚本：curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 
+启动docker服务：systemctl enable docker && systemctl start docker
+
 安装git：yum -y install git
 
 
@@ -38,9 +40,9 @@ cd docker-bigdata
 
 用我的Dockerfile构建镜像
 
-docker build -f Dockerfile-Centos7Bigdata -t xuerui911/bigdata .
+docker build -f Dockerfile-CentOS7Bigdata -t bigdata .
 
-（-f代表file，即指定dockerfile为哪个文件，如果dockerfile名字就为Dockerfile，-f Dockerfi可省略）
+（-f代表file，即指定dockerfile为哪个文件，如果dockerfile名字就为Dockerfile，-f Dockerfile可省略）
 
 （-t代表target，即目标镜像。末尾的“.”代表dockerfile和dockerfile中所需的文件在当前目录下，不能省略，如果你的dockerfile和所需文件不在同一目录，自行修改此处路径和dockerfile文件中的路径）
 
