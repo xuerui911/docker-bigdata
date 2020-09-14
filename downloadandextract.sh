@@ -25,15 +25,15 @@ wget https://mirrors.tuna.tsinghua.edu.cn/apache/phoenix/apache-phoenix-5.0.0-HB
 wget https://onedrive.gimhoy.com/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBckxZM25PVHJEM1ZsNWdLelN0RU1zWmdSWHMzSEE/ZT1PNUNXeDI=.tar.gz
 
 #解压所有包
-tar zxf apache-maven-3.6.3-bin.tar.gz -C /opt/module
-tar zxf hadoop-3.3.0.tar.gz -C /opt/module
-tar zxf apache-zookeeper-3.6.2-bin.tar.gz -C /opt/module
-tar zxf apache-hive-3.1.2-bin.tar.gz -C /opt/module
-tar zxf apache-flume-1.9.0-bin.tar.gz -C /opt/module
-tar zxf kafka_2.13-2.6.0.tgz -C /opt/module
-tar zxf v2.0.1.tar.gz -C /opt/module
-tar zxf hbase-2.3.1-bin.tar.gz -C /opt/module
-tar zxf jdk-11.0.8.tar.gz -C /opt/module
+#tar zxf apache-maven-3.6.3-bin.tar.gz -C /opt/module
+#tar zxf hadoop-3.3.0.tar.gz -C /opt/module
+#tar zxf apache-zookeeper-3.6.2-bin.tar.gz -C /opt/module
+#tar zxf apache-hive-3.1.2-bin.tar.gz -C /opt/module
+#tar zxf apache-flume-1.9.0-bin.tar.gz -C /opt/module
+#tar zxf kafka_2.13-2.6.0.tgz -C /opt/module
+#tar zxf v2.0.1.tar.gz -C /opt/module
+#tar zxf hbase-2.3.1-bin.tar.gz -C /opt/module
+#tar zxf jdk-11.0.8.tar.gz -C /opt/module
 
 
 #重命名
@@ -45,4 +45,4 @@ mv /opt/module/apache-zookeeper-3.6.2-bin /opt/module/zookeeper-3.6.2
 mv /opt/module/kafka-eagle-bin-2.0.1 /opt/module/kafka-eagle-2.0.1
 
 #删除压缩包
-rm -f *gz
+#rm -f *gz
