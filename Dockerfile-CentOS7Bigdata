@@ -52,7 +52,6 @@ RUN echo -e "192.168.88.101 hadoop101\n192.168.88.102 hadoop102\n192.168.88.103 
 RUN sed -i 's/#LoginGraceTime 2m/LoginGraceTime 0/' /etc/ssh/sshd_config
 RUN sed -i 's/#PermitRootLogin no/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -i 's/#PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
-RUN systemctl restart sshd
 
 
 #构建成功时打印
