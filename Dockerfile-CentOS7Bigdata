@@ -21,10 +21,14 @@ RUN wget https://downloads.lightbend.com/scala/2.13.3/scala-2.13.3.rpm && yum	-y
 
 RUN mkdir -p /opt/module
 
-ADD components/
+ADD components/*gz /opt/module/
 
-#COPY downloadandextract.sh /root/
-#RUN sh /root/downloadandextract.sh && rm -f /root/downloadandextract.sh
+mv /opt/module/apache-flume-1.9.0-bin /opt/module/flume-1.9.0
+mv /opt/module/apache-hive-3.1.2-bin /opt/module/hive-3.1.2
+mv /opt/module/apache-maven-3.6.3 /opt/module/maven-3.6.3
+mv /opt/module/apache-phoenix-5.0.0-HBase-2.0-bin /opt/module/phoenix-5.0.0
+mv /opt/module/apache-zookeeper-3.6.2-bin /opt/module/zookeeper-3.6.2
+mv /opt/module/kafka-eagle-bin-2.0.1 /opt/module/kafka-eagle-2.0.1
 
 #大数据组件环境变量
 ENV JAVA_HOME=/opt/module/jdk-11.0.8
@@ -43,7 +47,6 @@ RUN mkdir -p /opt/module/scripts
 ENV SH_HOME=/opt/module/scripts
 COPY scripts/* ${SH_HOME}/
 RUN chmod -R 755 ${SH_HOME}/*
-RUN chmod -R 755 ${MAVEN_HOME}/*
 
 ENV PATH=$PATH:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${ZK_HOME}/bin:${HIVE_HOME}/bin:${FLUME_HOME}/bin:${KAFKA_HOME}/bin:${HBASE_HOME}/bin:${PHN_HOME}/bin:$SH_HOME
 
