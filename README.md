@@ -31,7 +31,7 @@ yum -y install git
 
 ------------------------------------------------------------------------------------------------
 
-构建方式一：
+一键构建：
 
 将此仓库克隆到本地一键构建（假设使用root用户）：
 
@@ -40,19 +40,15 @@ git clone https://github.com/xuerui911/docker-bigdata.git && cd docker-bigdata &
 
 ------------------------------------------------------------------------------------------------
 
-构建方式二：
+常用命令：
 
 安装Docker：https://docs.docker.com/engine/install/
 
-            官方一键脚本：curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+            docker官方一键安装脚本：curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 	  
-启动docker服务：systemctl enable docker && systemctl start docker
+启动docker服务：
 
-将此仓库克隆到本地（假设使用root用户）：
-
-git clone https://github.com/xuerui911/docker-bigdata.git
-
-cd docker-bigdata
+systemctl enable docker && systemctl start docker
 
 用我的Dockerfile构建镜像
 
