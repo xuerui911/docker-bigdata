@@ -1,6 +1,8 @@
 #!/bin/sh
 yum -y install git
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+systemctl start docker
+systemctl enable docker
 #创建宿主机临时存储目录
 mkdir components/
 #下载所有包
@@ -46,5 +48,5 @@ mv /opt/module/apache-phoenix-5.0.0-HBase-2.0-bin /opt/module/phoenix-5.0.0
 mv /opt/module/apache-zookeeper-3.6.2-bin /opt/module/zookeeper-3.6.2
 mv /opt/module/kafka-eagle-bin-2.0.1 /opt/module/kafka-eagle-2.0.1
 
-#删除压缩包
-#rm -f *gz
+#docker构建
+docker build -f DockerCentOS7Bigdata -t centos7-bigdata .
