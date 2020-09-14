@@ -34,6 +34,10 @@ VMWare→编辑→虚拟网络编辑器→VMNet8→子网IP改为192.168.88.0 NA
 安装git：yum -y install git
 
 
+将此仓库克隆到本地一键构建（假设使用root用户）：git clone https://github.com/xuerui911/docker-bigdata.git && cd docker-bigdata && sh onekey.sh
+
+
+
 将此仓库克隆到本地（假设使用root用户）：
 
 git clone https://github.com/xuerui911/docker-bigdata.git
@@ -48,11 +52,13 @@ docker build -f Dockerfile-CentOS7Bigdata -t centos-bigdata .
 
 （-t代表target，即目标镜像。末尾的“.”代表dockerfile和dockerfile中所需的文件在当前目录下，不能省略，如果你的dockerfile和所需文件不在同一目录，自行修改此处路径和dockerfile文件中的路径）
 
-构建成功后
+
+
+
+构建成功后,查看已存在的镜像:
 
 docker images
 
-查看已存在的镜像
 
 
 
