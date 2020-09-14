@@ -1,4 +1,6 @@
 #!/bin/sh
+yum -y install git
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 #创建宿主机临时存储目录
 mkdir components/
 #下载所有包
