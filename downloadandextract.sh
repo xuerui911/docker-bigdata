@@ -1,5 +1,8 @@
 #!/bin/sh
+#创建宿主机临时存储目录
+mkdir components/
 #下载所有包
+cd components/
 #MAVEN			
 wget https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
 #Hadoop			
