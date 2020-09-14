@@ -29,6 +29,7 @@ ADD components/apache-flume-1.9.0-bin.tar.gz /opt/module
 ADD components/kafka_2.13-2.6.0.tgz /opt/module
 ADD components/v2.0.1.tar.gz /opt/module
 ADD components/hbase-2.3.1-bin.tar.gz /opt/module
+ADD components/apache-phoenix-5.0.0-HBase-2.0-bin.tar.gz /opt/module
 ADD components/jdk-11.0.8.tar.gz /opt/module
 
 RUN mv /opt/module/apache-flume-1.9.0-bin /opt/module/flume-1.9.0
