@@ -70,7 +70,7 @@ RUN echo -e "export HBASE_HOME=/opt/module/hbase-2.3.1\n" >> /root/.bshrc
 RUN echo -e "export PHN_HOME=/opt/module/phoenix-5.0.0\n" >> /root/.bshrc
 RUN echo -e "export SH_HOME=/opt/module/scripts\n" >> /root/.bshrc
 RUN echo -e "export PATH=$PATH:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${ZK_HOME}/bin:${HIVE_HOME}/bin:${FLUME_HOME}/bin:${KAFKA_HOME}/bin:${HBASE_HOME}/bin:${PHN_HOME}/bin:$SH_HOME\n" >> /root/.bshrc
-RUN source /etc/profile && RUN source /root/.bashrc
+RUN source /etc/profile && source /root/.bashrc
 
 #修改hosts添加集群机器
 RUN echo -e "192.168.88.101 hadoop101\n192.168.88.102 hadoop102\n192.168.88.103 hadoop103\n192.168.88.104 hadoop104\n192.168.88.105 hadoop105" >> /etc/hosts
