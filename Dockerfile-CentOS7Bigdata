@@ -86,12 +86,12 @@ RUN echo -e "export PATH=$PATH:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${HADOOP_HOME}
 RUN source /etc/profile && source /root/.bashrc
 
 #修改hosts添加集群机器
-RUN echo -e "192.168.88.101 hadoop101\n192.168.88.102 hadoop102\n192.168.88.103 hadoop103\n192.168.88.104 hadoop104\n192.168.88.105 hadoop105" >> /etc/hosts
+CMD echo -e "192.168.88.101 hadoop101\n192.168.88.102 hadoop102\n192.168.88.103 hadoop103\n192.168.88.104 hadoop104\n192.168.88.105 hadoop105" >> /etc/hosts
 
 #修改sshd配置:服务端不自动断开,允许root登录，允许空密码登录
-RUN sed -i 's/#LoginGraceTime 2m/LoginGraceTime 0/' /etc/ssh/sshd_config
-RUN sed -i 's/#PermitRootLogin no/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed -i 's/#PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
+CMD sed -i 's/#LoginGraceTime 2m/LoginGraceTime 0/' /etc/ssh/sshd_config
+CMD sed -i 's/#PermitRootLogin no/PermitRootLogin yes/' /etc/ssh/sshd_config
+CMD sed -i 's/#PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
 
 
 #构建成功时打印
