@@ -13,7 +13,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY repos/* /etc/yum.repos.d/
 
 #安装系统常用软件
-RUN yum -y update && yum -y install iproute wget bash-completion vim dnf nano openssh-server openssh-client python3
+RUN yum -y update && yum -y install iproute wget bash-completion vim dnf nano openssh-server openssh-clients python3
 
 #安装scala（spark依赖）
 RUN wget https://downloads.lightbend.com/scala/2.13.3/scala-2.13.3.rpm && yum	-y install scala-2.13.3.rpm && rm -f scala-2.13.3.rpm
