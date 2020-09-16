@@ -37,6 +37,11 @@ yum -y install git
 
 git clone https://github.com/xuerui911/docker-bigdata.git && cd docker-bigdata && sh onekey.sh
 
+国内访问github过慢的话可尝试我的gitee：
+
+git clone https://gitee.com//xuerui911/docker-bigdata.git && cd docker-bigdata && sh onekey.sh
+
+（同理访问其它github仓库过慢的话可以尝试自己用gitee账户克隆他人github仓库）（gitee打钱）
 
 ------------------------------------------------------------------------------------------------
 
@@ -78,25 +83,32 @@ git clone https://github.com/jpetazzo/pipework
 
 cp pipework/pipework /usr/local/bin/
 
-复制网卡配置文件ifcfg-ens33为ifcfg-br0，修改ifcfg-br0
+#请确保你的Linux虚拟机已设置静态IP
 
-cd /etc/sysconfig/network-scripts/
+#复制网卡配置文件ifcfg-ens33为ifcfg-br0，修改ifcfg-br0
 
-cp ifcfg-ens33 ifcfg-br0
+cp /etc/sysconfig/network-scripts/ifcfg-ens33 /etc/sysconfig/network-scripts/ifcfg-br0
 
-修改br0
 
-vim ifcfg-br0 //修改TYPE为Bridge，NAME、DEVICE为br0
+#修改br0,TYPE改为Bridge
 
-修改ens33
+sed -i 's/^TYPE=*/TYPE=Bridge/' /etc/sysconfig/network-scripts/ifcfg-br0
 
-vim ifcfg-ens33
+sed -i 's/^NAME=*/NAME=br0/' /etc/sysconfig/network-scripts/ifcfg-br0
 
-#注释掉UUID IPADDR GATEWAY DNS
+sed -i 's/^DEVICE=*/DEVICE=br0/' /etc/sysconfig/network-scripts/ifcfg-br0
 
-增加一行BRIDGE=br0
+#修改ens33，注释掉UUID IPADDR GATEWAY DNS，结尾加一行BRIDGE=br0
 
-保存退出
+sed -i 's/^UUID*/#&/' /etc/sysconfig/network-scripts/ifcfg-ens33
+
+sed -i 's/^IPADDR*/#&/' /etc/sysconfig/network-scripts/ifcfg-ens33
+
+sed -i 's/^GATEWAY*/#&/' /etc/sysconfig/network-scripts/ifcfg-ens33
+
+sed -i 's/^DNS*/#&/' /etc/sysconfig/network-scripts/ifcfg-ens33
+
+echo "BRIDGE=br0" >> /etc/sysconfig/network-scripts/ifcfg-ens33
 
 
 重启网络服务
@@ -108,13 +120,13 @@ systemctl restart network
 通过构建的image创建容器
 
 
-run代表创建并运行 -i表示jiaohu -t表示终端 -d表示后头 --net表示用哪个docker网络，想用pipework此处必须用none，--name为自定义容器名，--privileged=true为容器开启最高权限（慎用），centos-bigdata为从哪个image创建，/usr/sbin/init为容器创建之后运行哪个程序，默认是/bin/bash，想在容器里能使用systemctl就得用/usr/sbin/init
+run代表创建并运行 -i表示interactive交互 -t表示terminal终端 -d表示daemon后台 --net表示用哪个docker网络，想用pipework此处必须用none，--name为自定义容器名，--privileged为容器开启最高权限（慎用），centos-bigdata为从哪个image创建，/usr/sbin/init为容器创建之后运行哪个程序，默认是/bin/bash，想在容器里能使用systemctl就得用/usr/sbin/init
 
-docker run -itd --net=none --name hadoop102 --privileged=true centos-bigdata /usr/sbin/init
+docker run -itd --net=none --name hadoop102 --privileged centos-bigdata /usr/sbin/init
 
-docker run -itd --net=none --name hadoop103 --privileged=true centos-bigdata /usr/sbin/init
+docker run -itd --net=none --name hadoop103 --privileged centos-bigdata /usr/sbin/init
 
-docker run -itd --net=none --name hadoop104 --privileged=true centos-bigdata /usr/sbin/init
+docker run -itd --net=none --name hadoop104 --privileged centos-bigdata /usr/sbin/init
 
 ----------------------------------------------------------------------------------------------------------
 
@@ -128,29 +140,37 @@ pipework br0 hadoop104 192.168.88.104/24@192.168.88.2
 
 br0为我们修改过的桥接网卡，之后是创建容器时指定的容器名，之后是指定的IP，/24为掩码255.255.255.0，@后面是默认网关
 
+------------------------------------------------------------------------------------------------------------------------------------------------
+#创建容器之后总是忘了指定IP，写到一条命令里
+
+docker run -itd --net=none --name hadoop102 --privileged centos-bigdata /usr/sbin/init && pipework br0 hadoop102 192.168.88.102/24@192.168.88.2
+
+docker run -itd --net=none --name hadoop103 --privileged centos-bigdata /usr/sbin/init && pipework br0 hadoop103 192.168.88.103/24@192.168.88.2
+
+docker run -itd --net=none --name hadoop104 --privileged centos-bigdata /usr/sbin/init && pipework br0 hadoop104 192.168.88.104/24@192.168.88.2
+-----------------------------------------------------------------------------------------------------------------------------------------------
 
 #将主机eth0桥接到br0上，并把eth0的IP配置在br0上。这里由于是远程操作，中间网络会断掉，所以放在一条命令中执行。
 
 	ip addr add 192.168.88.102/24 dev br0; \
-    ip addr del 192.168.88.102/24 dev eth0; \
-    brctl addif br0 eth0; \
-    ip route del default; \
-    ip route add default gw 192.168.88.2 dev br0
+    	ip addr del 192.168.88.102/24 dev eth0; \
+    	brctl addif br0 eth0; \
+    	ip route del default; \
+    	ip route add default gw 192.168.88.2 dev br0
 	
 ----------------------------------------------------------------------------------------------------------
 
 进入运行中的容器
 
-docker exec -it hadoop102 /bin/sh
+	docker exec -it hadoop102 /bin/sh
 
 在容器中想返回到宿主机而让容器后台运行：
 
-    ctrl+p+q同时按
-    
+	ctrl+p+q同时按
     
 在容器中想返回到宿主机并退出容器：
 
-    输入exit并执行
+	输入exit并执行
 
 --------------------------------------------------------------------------------------------------------------
 
