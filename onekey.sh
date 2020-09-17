@@ -13,45 +13,94 @@ fi
 #下载所有包
 cd components/
 #MAVEN			
-if [ ! -f "apache-maven-3.6.3-bin.tar.gz" ]; then
-wget -c https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+if [ ! -f "maven-3.6.3.tar.gz" ]; 
+    then
+        echo "maven-3.6.3二进制包不存在，从清华源下载"
+        wget -c -O maven-3.6.3.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+    else
+        echo "maven-3.6.3二进制包已存在"
 fi
+
 #Hadoop			
-if [ ! -f "hadoop-3.3.0.tar.gz" ]; then
-wget -c https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.tar.gz
-fi
+    if [ ! -f "hadoop-3.3.0.tar.gz" ]; 
+        then
+            echo "hadoop-3.3.0二进制包不存在，从清华源下载"
+            wget -c https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.tar.gz
+        else
+            echo "hadoop-3.3.0二进制包已存在"
+    fi
+
 #Zookeeper		
-if [ ! -f "apache-zookeeper-3.6.2-bin.tar.gz" ]; then
-wget -c https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.6.2/apache-zookeeper-3.6.2-bin.tar.gz
-fi
+    if [ ! -f "zookeeper-3.6.2.tar.gz" ]; 
+        then
+            echo "zookeeper-3.6.2二进制包不存在，从清华源下载"
+            wget -c -O zookeeper-3.6.2.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.6.2/apache-zookeeper-3.6.2-bin.tar.gz
+        else
+            echo "zookeeper-3.6.2二进制包已存在"
+    fi
+
 #Hive			
-if [ ! -f "apache-hive-3.1.2-bin.tar.gz" ]; then
-wget -c https://mirrors.tuna.tsinghua.edu.cn/apache/hive/hive-3.1.2/apache-hive-3.1.2-bin.tar.gz
-fi
+    if [ ! -f "hive-3.1.2.tar.gz" ]; 
+        then
+            echo "hive-3.1.2二进制包不存在，从清华源下载"
+            wget -c -O hive-3.1.2.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/hive/hive-3.1.2/apache-hive-3.1.2-bin.tar.gz
+        else
+            echo "hive-3.1.2二进制包已存在"
+    fi
+
 #Flume			
-if [ ! -f "apache-flume-1.9.0-bin.tar.gz" ]; then
-wget -c https://mirrors.tuna.tsinghua.edu.cn/apache/flume/1.9.0/apache-flume-1.9.0-bin.tar.gz
-fi
+    if [ ! -f "flume-1.9.0.tar.gz" ]; 
+        then
+            echo "flume-1.9.0二进制包不存在，从清华源下载"
+            wget -c -O flume-1.9.0.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/flume/1.9.0/apache-flume-1.9.0-bin.tar.gz
+        else
+            echo "flume-1.9.0二进制包已存在"
+    fi
+
 #Kafka			
-if [ ! -f "kafka_2.13-2.6.0.tgz" ]; then
-wget -c https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
-fi
+    if [ ! -f "kafka_2.13-2.6.0.tgz" ]; 
+        then
+            echo "kafka_2.13-2.6.0二进制包不存在，从清华源下载"
+            wget -c -O kafka_2.13-2.6.0.tgz https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+        else
+            echo "kafka_2.13-2.6.0二进制包已存在"
+    fi
+
 #Kafka-eagle		
-if [ ! -f "v2.0.1.tar.gz" ]; then
-wget -c https://github.com/smartloli/kafka-eagle-bin/archive/v2.0.1.tar.gz
-fi
+    if [ ! -f "kafka-eagle-2.0.1.tar.gz" ]; 
+        then
+            echo "kafka-eagle-2.0.1二进制包不存在，从github下载"
+            wget -c -O kafka-eagle-2.0.1.tar.gz https://github.com/smartloli/kafka-eagle-bin/archive/v2.0.1.tar.gz
+        else
+            echo "kafka-eagle-2.0.1二进制包已存在"
+    fi
+
 #HBase			
-if [ ! -f "hbase-2.3.1-bin.tar.gz" ]; then
-wget -c https://mirrors.tuna.tsinghua.edu.cn/apache/hbase/2.3.1/hbase-2.3.1-bin.tar.gz
-fi
+    if [ ! -f "hbase-2.3.1.tar.gz" ]; 
+        then
+            echo "hbase-2.3.1二进制包不存在，从清华源下载"
+            wget -c -O hbase-2.3.1.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/hbase/2.3.1/hbase-2.3.1-bin.tar.gz
+        else
+            echo "hbase-2.3.1二进制包已存在"
+    fi
+
 #Phoenix			
-if [ ! -f "apache-phoenix-5.0.0-HBase-2.0-bin.tar.gz" ]; then
-wget -c https://mirrors.tuna.tsinghua.edu.cn/apache/phoenix/apache-phoenix-5.0.0-HBase-2.0/bin/apache-phoenix-5.0.0-HBase-2.0-bin.tar.gz
-fi
+    if [ ! -f "phoenix-5.0.0.tar.gz" ]; 
+        then
+            echo "phoenix-5.0.0二进制包不存在，从清华源下载"
+            wget -c -O phoenix-5.0.0.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/phoenix/apache-phoenix-5.0.0-HBase-2.0/bin/apache-phoenix-5.0.0-HBase-2.0-bin.tar.gz
+        else
+            echo "phoenix-5.0.0二进制包已存在"
+    fi
+
 #JDK11.0.8（Oracle官网必须登录才给临时下载链接，这是我个人onedrive用工具生成的直链，可能会失效）				
-if [ ! -f "jdk-11.0.8.tar.gz" ]; then
-wget -c -O jdk-11.0.8.tar.gz https://onedrive.gimhoy.com/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBckxZM25PVHJEM1ZsNWdLelN0RU1zWmdSWHMzSEE/ZT1PNUNXeDI=.tar.gz
-fi
+    if [ ! -f "jdk-11.0.8.tar.gz" ]; 
+        then
+            echo -e "jdk-11.0.8二进制包不存在，下载\n（现在Oracle官网必须登录才给临时下载链接，这是我用工具生成的个人Onedrive直链，可能会失效）"
+            wget -c -O jdk-11.0.8.tar.gz https://onedrive.gimhoy.com/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBckxZM25PVHJEM1ZsNWdLelN0RU1zWmdSWHMzSEE/ZT1PNUNXeDI=.tar.gz
+        else
+            echo "jdk-11.0.8二进制包已存在"
+    fi
 
 #解压所有包
 #tar zxf apache-maven-3.6.3-bin.tar.gz -C /opt/module
