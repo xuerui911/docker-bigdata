@@ -5,15 +5,22 @@ WORKDIR /root/
 #readme文件
 #COPY Readme-DockerCentOS7Bigdata.txt /root/readme.txt
 
+
+#容器SSH服务
+RUN mkdir -p /root/.ssh/
+ADD tmp/authorized_keys /root/.ssh/authorized_keys
+#取消pam限制
+RUN sed -ri 's/session required pam_loginuid.so/#session required pam_loginuid.so/g' /etc/pam.d/sshd
+
 #设置时区为东八区
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 #添加源
-COPY repos/* /etc/yum.repos.d/
+ADD repos/* /etc/yum.repos.d/
 
 #安装系统常用软件
-RUN yum -y update && yum -y install iproute wget bash-completion vim dnf nano openssh-server openssh-clients python3
+RUN yum -y update && yum -y install iproute wget bash-completion vim dnf nano openssh-server openssh-client python3
 
 #安装scala（spark依赖）
 RUN wget https://downloads.lightbend.com/scala/2.13.3/scala-2.13.3.rpm && yum	-y install scala-2.13.3.rpm && rm -f scala-2.13.3.rpm
@@ -95,9 +102,10 @@ RUN echo "sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config" >> /etc/profil
 
 RUN source /etc/profile && source /root/.bashrc
 
+
 #修改hosts添加集群机器
 ENTRYPOINT /bin/sh -c ${SH_HOME}/modhosts.sh
-
+ENTRYPOINT /bin/sh -c ${SH_HOME}/startsshd.sh
 
 #构建成功时打印
 ONBUILD echo "构建成功！"
